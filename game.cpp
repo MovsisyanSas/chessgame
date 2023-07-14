@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
-#include "figure.h"
-#include "board.h"
+#include "figure.cpp"
+#include "board.cpp"
 
-int cond;
+extern int cond;
 
 class game {
 public:
@@ -24,6 +24,13 @@ public:
 		system("cls");
 		b.print();
 
+		std::cout << "Enter position for black knight(x,y): ";
+		std::cin >> x >> y;
+		knight bn("B", x, y);
+		b.set(bn);
+		system("cls");
+		b.print();
+
 		std::cout << "Enter position for black queen(x,y): ";
 		std::cin >> x >> y;
 		queen bq("B", x, y);
@@ -38,18 +45,12 @@ public:
 		system("cls");
 		b.print();
 
-		std::cout << "Enter position for black knight(x,y): ";
-		std::cin >> x >> y;
-		knight bn("B", x, y);
-		b.set(bn);
-		system("cls");
-		b.print();
-		
-		/*b.print_num(); */
+
+
+		//b.print_num();
 		cond = b.condition(wk);
 	}
 	static void finish() {
-		
 		switch (cond)
 		{
 		case 1:

@@ -22,8 +22,8 @@ public:
 	int x = 0, y = 0;
 	std::string name;
 	king() = delete;
-	king(std::string col,int r,int c){
-		if (figure::inBoard(r,c))
+	king(std::string col, int r, int c) {
+		if (figure::inBoard(r, c))
 		{
 			if (col == figure::black || col == figure::white)
 			{

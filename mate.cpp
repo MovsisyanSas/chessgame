@@ -1,7 +1,6 @@
 #include <iostream>
-#include "game.h"
+#include "game.cpp"
 
-class game;
 
 int main() {
 	game::start();

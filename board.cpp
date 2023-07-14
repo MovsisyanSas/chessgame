@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include "figure.cpp"
+
 
 class board {
 	const int row;
@@ -77,7 +79,7 @@ private:
 				}
 				return true;
 			}
-			else if (x == 7){
+			else if (x == 7) {
 
 				if (matrix1[x][y + 1] == "WK" || matrix1[x - 1][y + 1] == "WK" || matrix1[x - 1][y] == "WK")
 				{
@@ -202,8 +204,16 @@ private:
 		}
 	}
 	void att_q(int x, int y, std::string name) {
-		matrix2[x][y] -= 5;
-		for (int i = 0; i < row; i++)
+		matrix2[x][y] -= 4;
+		for (int i = x; i < row; i++)
+		{
+			if (matrix1[i][y] != "__" && matrix1[i][y] != name && matrix1[i][y] != "WK")
+			{
+				break;
+			}
+			matrix2[i][y]++;
+		}
+		for (int i = x; i >= 0; i--)
 		{
 			if (matrix1[i][y] != "__" && matrix1[i][y] != name && matrix1[i][y] != "WK")
 			{
@@ -219,105 +229,98 @@ private:
 			}
 			matrix2[x][i]++;
 		}
+		for (int i = 0; i >= 0; i--)
+		{
+			if (matrix1[x][i] != "__" && matrix1[x][i] != name && matrix1[x][i] != "WK")
+			{
+				break;
+			}
+			matrix2[x][i]++;
+		}
 
 		int i = x, j = y;
-		do
-		{
-			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK")
-			{
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
 				break;
 			}
 			matrix2[i][j]++;
 			i++;
 			j++;
-		}while (i != -1 && i != 8 && j != -1 && j != 8);
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
 
 		i = x, j = y;
-		do
-		{
-			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK")
-			{
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
 				break;
 			}
 			matrix2[i][j]++;
 			i--;
 			j++;
-		} while (i != -1 && i != 8 && j != -1 && j != 8);
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
 
 		i = x, j = y;
-		do
-		{
-			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK")
-			{
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
 				break;
 			}
 			matrix2[i][j]++;
 			i--;
 			j--;
-		} while (i != -1 && i != 8 && j != -1 && j != 8);
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
 
 		i = x, j = y;
-		do
-		{
-			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK")
-			{
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
 				break;
 			}
 			matrix2[i][j]++;
 			i++;
 			j--;
-		} while (i != -1 && i != 8 && j != -1 && j != 8);
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
 	}
 	void att_b(int x, int y, std::string name) {
 		matrix2[x][y] -= 3;
 		int i = x, j = y;
-		do
-		{
-			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK")
-			{
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
 				break;
 			}
 			matrix2[i][j]++;
 			i++;
 			j++;
-		} while (i != -1 && i != 8 && j != -1 && j != 8);
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
 
 		i = x, j = y;
-		do
-		{
-			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK")
-			{
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
 				break;
 			}
 			matrix2[i][j]++;
 			i--;
 			j++;
-		} while (i != -1 && i != 8 && j != -1 && j != 8);
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
 
 		i = x, j = y;
-		do
-		{
-			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK")
-			{
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
 				break;
 			}
 			matrix2[i][j]++;
 			i--;
 			j--;
-		} while (i != -1 && i != 8 && j != -1 && j != 8);
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
 
 		i = x, j = y;
-		do
-		{
-			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK")
-			{
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
 				break;
 			}
 			matrix2[i][j]++;
 			i++;
 			j--;
-		} while (i != -1 && i != 8 && j != -1 && j != 8);
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
 	}
+
 	void att_n(int x, int y) {
 		matrix2[x][y]++;
 		if (x != 1 && x != 0 && x != 6 && x != 7)
@@ -510,22 +513,22 @@ private:
 				matrix2[x - 1][y + 2]++;
 			}
 		}
-		
-}
+
+	}
 public:
-	board() : row(8),column(8){
+	board() : row(8), column(8) {
 		init();
 		print();
 	}
-	board(const board& obj) : row(obj.row), column(obj.column){
+	board(const board& obj) : row(obj.row), column(obj.column) {
 		this->matrix1 = new std::string * [row];
-		this->matrix2 = new int * [row];
+		this->matrix2 = new int* [row];
 
 		for (int i = 0; i < row; i++) {
 			matrix1[i] = new std::string[column];
 			matrix2[i] = new int[column];
 		}
-		
+
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
 				matrix1[i][j] = obj.matrix1[i][j];
@@ -590,7 +593,7 @@ public:
 	}
 	void set(king k) {
 
-		if (isfree(k.x,k.y) && kingcheck(k.x, k.y))
+		if (isfree(k.x, k.y) && kingcheck(k.x, k.y))
 		{
 			matrix1[k.x][k.y] = k.name;
 			if (k.name == "BK")
@@ -598,7 +601,7 @@ public:
 				att_k(k.x, k.y);
 			}
 		}
-		else if (!isfree(k.x,k.y)) {
+		else if (!isfree(k.x, k.y)) {
 			std::cout << "Error: cordinates are already in use" << std::endl;
 			abort();
 		}
@@ -608,7 +611,7 @@ public:
 		}
 	}
 	void set(queen q) {
-		if (isfree(q.x,q.y))
+		if (isfree(q.x, q.y))
 		{
 			matrix1[q.x][q.y] = q.name;
 			att_q(q.x, q.y, q.name);
@@ -896,7 +899,7 @@ public:
 				}
 			}
 		}
-		
+
 		if (min == 0)
 		{
 			if (count == 0)
