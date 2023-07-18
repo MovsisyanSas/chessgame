@@ -1,10 +1,11 @@
 #include <iostream>
-#include "game.cpp"
+#include "game.h"
 
 
 int main() {
-	game::start();
-	game::finish();
+	chessminigame gm;
+	gm.start();
+	gm.finish();
 }
 
 
