@@ -21,13 +21,16 @@ public:
 };
 
 class chessminigame : public chessgame {
-	std::vector<std::string> figures = { "WK11","BK13","BN33","BB88","BQ18"};
-	const int row = 8;
 	const int column = 8;
-	int cond;
+	int cond = -1;
+	const int row = 8;
 	board b{row,column};
 	int x = 0, y = 0;
-	//void passer(std::vector<std::string> vect);
+private:
+	std::vector<std::string> figurecords = { "WK11","BK13","BN33","BB88","BQ18" };
+	std::vector<figure*> figures;
+	void parser();
+	void deleter();
 public:
 	chessminigame() = default;
 	void start() override;

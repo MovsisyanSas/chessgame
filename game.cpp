@@ -7,104 +7,98 @@ int game::converter(char c) {
 		return 1;
 		break;
 	case '2':
-		return 1;
+		return 2;
 		break;
 	case '3':
-		return 1;
+		return 3;
 		break;
 	case '4':
-		return 1;
+		return 4;
 		break;
 	case '5':
-		return 1;
+		return 5;
 		break;
 	case '6':
-		return 1;
+		return 6;
 		break;
 	case '7':
-		return 1;
+		return 7;
 		break;
 	case '8':
-		return 1;
+		return 8;
 		break;
 	case '9':
-		return 1;
+		return 9;
 		break;
 	case '0':
-		return 1;
+		return 0;
 		break;
 	default:
 		return -1;
 		break;
 	}
 }
-//void chessminigame::passer(std::vector<std::string> vect){
-//	char color;
-//	int x, y;
-//	char name;
-//	for (int i = 0; i < vect.size(); i++)
-//	{
-//		color = vect[i][1];
-//		name = vect[i][2];
-//		x = game::converter(vect[i][2]);
-//		y = game::converter(vect[i][3]);
-//
-//		switch (name)
-//		{
-//		case 'K':
-//			
-//		default:
-//			break;
-//		}
-//	}
-//}
+void chessminigame::parser(){
+	std::string color;
+	std::string full;
+	int x, y;
+	char name;
+	for (int i = 0; i < figurecords.size(); i++)
+	{
+		full = figurecords[i];
+		figure* Figure;
+		color = full[0];
+		name = full[1];
+		x = game::converter(full[2]);
+		y = game::converter(full[3]);
 
+		switch (name)
+		{
+		case 'K':
+			Figure = new king(color, x, y);
+			break;
+		case 'Q':
+			Figure = new queen(color, x, y);
+			break;
+		case 'B':
+			Figure = new bishop(color, x, y);
+			break;
+		case 'N':
+			Figure = new knight(color, x, y);
+			break;
+		default:
+			break;
+		}
+		figures.push_back(Figure);
+	}
+}
+void chessminigame::deleter() {
+	for (int i = 0; i < figures.size(); i++)
+	{
+		delete[] figures[i];
+	}
+}
 void chessminigame::start() {
-	std::cout << "Enter position for white king(x,y): ";
-	std::cin >> x >> y;
-	king wk("W", x, y);
-	b.set(wk);
+	parser();
+	b.nameplacer(figures);
+	b.Att(figures);
 	system("cls");
-	b.print();
 
-	std::cout << "Enter position for black king(x,y): ";
-	std::cin >> x >> y;
-	king bk("B", x, y);
-	b.set(bk);
-	system("cls");
-	b.print();
-
-	std::cout << "Enter position for black knight(x,y): ";
-	std::cin >> x >> y;
-	knight bn("B", x, y);
-	b.set(bn);
-	system("cls");
-	b.print();
-
-	std::cout << "Enter position for black queen(x,y): ";
-	std::cin >> x >> y;
-	queen bq("B", x, y);
-	b.set(bq);
-	system("cls");
-	b.print();
-
-	std::cout << "Enter position for black bishop(x,y): ";
-	std::cin >> x >> y;
-	bishop bb("B", x, y);
-	b.set(bb);
-	system("cls");
-	b.print();
-
-
-
-	//b.print_num();
-	cond = b.condition(wk);
+	for (int i = 0; i < figures.size(); i++)
+	{
+		if (figures[i]->name == "WK")
+		{
+			cond = b.condition(figures[i]);
+			break;
+		}
+	}
 }
 void chessminigame::finish() {
+	b.print();
 	switch (cond)
 	{
 	case 1:
-		std::cout << "Mate " << std::endl;
+		std::cout << "Mate" << std::endl;
 		break;
 	case 2:
 		std::cout << "Stalemate " << std::endl;
@@ -116,4 +110,5 @@ void chessminigame::finish() {
 		std::cout << "Error " << std::endl;
 		break;
 	}
+	deleter();
 }

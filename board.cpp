@@ -1,98 +1,60 @@
 #include "matrix.h"
+#include <iostream>
 
-bool board::kingcheck(int x, int y) {
-	if (y != 0 && y != 7)
-	{
-		if (x != 0 && x != 7)
-		{
-			if (matrix1[x][y + 1] == "WK" || matrix1[x][y - 1] == "WK" || matrix1[x + 1][y + 1] == "WK" || matrix1[x - 1][y - 1] == "WK" || matrix1[x - 1][y + 1] == "WK" || matrix1[x + 1][y - 1] == "WK" || matrix1[x + 1][y] == "WK" || matrix1[x - 1][y] == "WK")
-			{
-				return false;
-			}
-			else if (matrix1[x][y + 1] == "BK" || matrix1[x][y - 1] == "BK" || matrix1[x + 1][y + 1] == "BK" || matrix1[x - 1][y - 1] == "BK" || matrix1[x - 1][y + 1] == "BK" || matrix1[x + 1][y - 1] == "BK" || matrix1[x + 1][y] == "BK" || matrix1[x - 1][y] == "BK")
-			{
-				return false;
-			}
-			return true;
-		}
-		else if (x == 0) {
-			if (matrix1[x][y + 1] == "WK" || matrix1[x][y - 1] == "WK" || matrix1[x + 1][y + 1] == "WK" || matrix1[x + 1][y - 1] == "WK" || matrix1[x + 1][y] == "WK")
-			{
-				return false;
-			}
-			else if (matrix1[x][y + 1] == "BK" || matrix1[x][y - 1] == "BK" || matrix1[x + 1][y + 1] == "BK" || matrix1[x + 1][y - 1] == "BK" || matrix1[x + 1][y] == "BK")
-			{
-				return false;
-			}
-			return true;
-		}
-		else if (x == 7) {
-			if (matrix1[x][y + 1] == "WK" || matrix1[x][y - 1] == "WK" || matrix1[x - 1][y - 1] == "WK" || matrix1[x - 1][y + 1] == "WK" || matrix1[x - 1][y] == "WK")
-			{
-				return false;
-			}
-			else if (matrix1[x][y + 1] == "BK" || matrix1[x][y - 1] == "BK" || matrix1[x - 1][y - 1] == "BK" || matrix1[x - 1][y + 1] == "BK" || matrix1[x - 1][y] == "BK")
-			{
-				return false;
-			}
-			return true;
-		}
-	}
-	else if (y == 0)
-	{
-		if (x == 0) {
-
-			if (matrix1[x][y + 1] == "WK" || matrix1[x + 1][y + 1] == "WK" || matrix1[x + 1][y] == "WK")
-			{
-				return false;
-			}
-			else if (matrix1[x][y + 1] == "BK" || matrix1[x + 1][y + 1] == "BK" || matrix1[x + 1][y] == "BK")
-			{
-				return false;
-			}
-			return true;
-		}
-		else if (x == 7) {
-
-			if (matrix1[x][y + 1] == "WK" || matrix1[x - 1][y + 1] == "WK" || matrix1[x - 1][y] == "WK")
-			{
-				return false;
-			}
-			else if (matrix1[x][y + 1] == "BK" || matrix1[x - 1][y + 1] == "BK" || matrix1[x - 1][y] == "BK")
-			{
-				return false;
-			}
-			return true;
-		}
-	}
-	else if (y == 7) {
-		if (x == 0) {
-
-			if (matrix1[x][y - 1] == "WK" || matrix1[x + 1][y - 1] == "WK" || matrix1[x + 1][y] == "WK")
-			{
-				return false;
-			}
-			else if (matrix1[x][y - 1] == "BK" || matrix1[x + 1][y - 1] == "BK" || matrix1[x + 1][y] == "BK")
-			{
-				return false;
-			}
-			return true;
-		}
-		else if (x == 7) {
-
-			if (matrix1[x][y - 1] == "WK" || matrix1[x - 1][y - 1] == "WK" || matrix1[x - 1][y] == "WK")
-			{
-				return false;
-			}
-			else if (matrix1[x][y - 1] == "BK" || matrix1[x - 1][y - 1] == "BK" || matrix1[x - 1][y] == "BK")
-			{
-				return false;
-			}
-			return true;
-		}
-	}
-	return true;
+double board::distance(int x1, int y1, int x2, int y2) {
+	double X = std::pow(x1 - x2, 2);
+	double Y = std::pow(y1 - y2, 2);
+	return std::pow(X + Y, 0.5);
 }
+
+void board::nameplacer(std::vector<figure*> vect) {
+	for (int i = 0; i < vect.size(); i++)
+	{
+		if (isfree(vect[i]->x,vect[i]->y))
+		{
+			if (vect[i]->name == "WK")
+			{
+				for (int j = 0; j < vect.size(); j++)
+				{
+					if (vect[j]->name == "BK")
+					{
+						if (distance(vect[i]->x, vect[i]->y, vect[j]->x, vect[j]->y) < 1)
+						{
+							abort();
+						}
+					}
+				}
+			}
+			matrix1[vect[i]->x][vect[i]->y] = vect[i]->name;
+		}
+	}
+}
+
+void board::Att(std::vector<figure*> vect) {
+	std::string Name;
+	int X, Y;
+	for (int i = 0; i < vect.size(); i++)
+	{
+		Name = vect[i]->name;
+		X = vect[i]->x;
+		Y = vect[i]->y;
+
+		if (Name == "WK" || Name == "BK")
+		{
+			att.att_k(X, Y, matrix2);
+		}
+		else if (Name == "WQ" || Name == "BQ") {
+			att.att_q(X, Y, row, Name, matrix2, matrix1);
+		}
+		else if (Name == "WB" || Name == "BB") {
+			att.att_b(X, Y, Name, matrix2, matrix1);
+		}
+		else if (Name == "WQ" || Name == "BQ") {
+			att.att_n(X, Y,matrix2);
+		}
+	}
+}
+
 bool board::isfree(int x, int y) {
 	if (matrix1[x][y] == "__")
 	{
@@ -138,51 +100,12 @@ void board::print_num() {
 	std::cout << "(y)" << std::endl;
 	std::cout << std::endl;
 }
-void board::set(king k) {
 
-	if (isfree(k.x, k.y) && kingcheck(k.x, k.y))
-	{
-		matrix1[k.x][k.y] = k.name;
-		if (k.name == "BK")
-		{
-			att.att_k(k.x, k.y, matrix2);
-		}
-	}
-	else if (!isfree(k.x, k.y)) {
-		std::cout << "Error: cordinates are already in use" << std::endl;
-		abort();
-	}
-	else if (!kingcheck(k.x, k.y)) {
-		std::cout << "Error: kings must be far at least by one cell" << std::endl;
-		abort();
-	}
-}
-void board::set(queen q) {
-	if (isfree(q.x, q.y))
-	{
-		matrix1[q.x][q.y] = q.name;
-		att.att_q(q.x, q.y, row, q.name, matrix2, matrix1);
-	}
-}
-void board::set(bishop b) {
-	if (isfree(b.x, b.y))
-	{
-		matrix1[b.x][b.y] = b.name;
-		att.att_b(b.x, b.y, b.name, matrix2, matrix1);
-	}
-}
-void board::set(knight n) {
-	if (isfree(n.x, n.y))
-	{
-		matrix1[n.x][n.y] = n.name;
-		att.att_n(n.x, n.y, matrix2);
-	}
-}
-int board::condition(king k) {
+int board::condition(figure* k) {
 	int count = 8;
 	int min = 0;
-	int x = k.x;
-	int y = k.y;
+	int x = k->x;
+	int y = k->y;
 	if (y != 0 && y != 7)
 	{
 		if (x != 0 && x != 7)

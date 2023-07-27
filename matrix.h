@@ -2,6 +2,7 @@
 #define MATRIX_H
 
 #include <iostream>
+#include <vector>
 #include "attack.h"
 #include "figure.h"
 
@@ -38,11 +39,10 @@ public:
 
     void print();
     void print_num();
-    void set(king k);
-    void set(queen q);
-    void set(bishop b);
-    void set(knight n);
-    int condition(king k);
+    void nameplacer(std::vector<figure*> vect);
+    void Att(std::vector<figure*> vect);
+    int condition(figure* k);
+    double distance(int x1, int y1, int x2, int y2);
 };
 #endif  // MATRIX_H
 
