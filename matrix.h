@@ -27,9 +27,7 @@ public:
 class board : public matrix {
     attack att;
 private:
-    bool kingcheck(int x, int y);
     bool isfree(int x, int y);
-
 public:
     board() = default;
     board(int a, int b);
@@ -43,6 +41,8 @@ public:
     void Att(std::vector<figure*> vect);
     int condition(figure* k);
     double distance(int x1, int y1, int x2, int y2);
+    figure* find_m1(std::vector<figure*> vect);
+    void clear();
 };
 #endif  // MATRIX_H
 

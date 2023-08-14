@@ -12,7 +12,7 @@ protected:
 public:
     int x = 0, y = 0;
     std::string name;
-
+    void set(int x, int y);
     virtual ~figure() {}
 };
 

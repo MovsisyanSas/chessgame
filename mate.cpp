@@ -7,5 +7,3 @@ int main() {
 	gm.start();
 	gm.finish();
 }
-
-

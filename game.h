@@ -27,10 +27,11 @@ class chessminigame : public chessgame {
 	board b{row,column};
 	int x = 0, y = 0;
 private:
-	std::vector<std::string> figurecords = { "WK11","BK13","BN33","BB88","BQ18" };
+	std::vector<std::string> figurecords = { "WK11","BK13","BN33","BB15","BQ18" };
 	std::vector<figure*> figures;
 	void parser();
 	void deleter();
+	void m1();
 public:
 	chessminigame() = default;
 	void start() override;

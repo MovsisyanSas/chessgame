@@ -78,6 +78,21 @@ void chessminigame::deleter() {
 		delete[] figures[i];
 	}
 }
+
+void chessminigame::m1() {
+	std::vector<figure*> figures_c(figures.begin(), figures.end());
+	figure* mate_figure = b.find_m1(figures_c);
+	if (mate_figure)
+	{
+		std::cout << "Mate from 1: " << mate_figure->name <<"->" << mate_figure->y + 1 << ',' << mate_figure->x + 1 << "(x,y)" << std::endl;
+	}
+	else
+	{
+		std::cout << "There is not mate from 1 move for black side" << std::endl;
+	}
+	
+}
+
 void chessminigame::start() {
 	parser();
 	b.nameplacer(figures);
@@ -102,9 +117,11 @@ void chessminigame::finish() {
 		break;
 	case 2:
 		std::cout << "Stalemate " << std::endl;
+		m1();
 		break;
 	case 3:
 		std::cout << "No win or draw condition " << std::endl;
+		m1();
 		break;
 	default:
 		std::cout << "Error " << std::endl;

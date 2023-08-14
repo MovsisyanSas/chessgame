@@ -39,7 +39,7 @@ void board::Att(std::vector<figure*> vect) {
 		X = vect[i]->x;
 		Y = vect[i]->y;
 
-		if (Name == "WK" || Name == "BK")
+		if (Name == "BK")
 		{
 			att.att_k(X, Y, matrix2);
 		}
@@ -49,7 +49,7 @@ void board::Att(std::vector<figure*> vect) {
 		else if (Name == "WB" || Name == "BB") {
 			att.att_b(X, Y, Name, matrix2, matrix1);
 		}
-		else if (Name == "WQ" || Name == "BQ") {
+		else if (Name == "WN" || Name == "BN") {
 			att.att_n(X, Y,matrix2);
 		}
 	}
@@ -64,7 +64,7 @@ bool board::isfree(int x, int y) {
 }
 
 board::board(int a, int b) : matrix(a,b) {
-	print();
+	
 }
 
 void board::print() {
@@ -419,4 +419,81 @@ int board::condition(figure* k) {
 			return 3;
 		}
 	}
+}
+void board::clear() {
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < column; j++) {
+			matrix1[i][j] = "__";
+			matrix2[i][j] = 0;
+		}
+	}
+}
+
+figure* board::find_m1(std::vector<figure*> vect) {
+	board b_copy(8,8);
+	possible_attack pos;
+	std::vector<figure*> copy = vect;
+	std::vector<std::pair<int, int>> new_coords;
+	figure* wk_copy = vect[1];
+	int first_x, first_y;
+	double d = 0;
+
+	for (int i = 0; i < vect.size(); i++)
+	{
+		if (vect[i]->name == "WK")
+		{
+			wk_copy = vect[i];
+			break;
+		}
+	}
+
+	for (int i = 0; i < vect.size(); i++)
+	{
+		first_y = copy[i]->y;
+		first_x = copy[i]->x;
+		if (vect[i]->name == "WK")
+		{
+			continue;
+		}
+		else if (vect[i]->name == "BK")
+		{
+			new_coords = pos.possible_k(vect[i]->x, vect[i]->y);
+		}
+		else if (vect[i]->name == "BQ")
+		{	
+			new_coords = pos.possible_q(vect[i]->x, vect[i]->y, 8, vect[i]->name, b_copy.matrix1);
+		}
+		else if (vect[i]->name == "BB")
+		{		
+			new_coords = pos.possible_b(vect[i]->x, vect[i]->y, b_copy.matrix1);
+		}
+		else if (vect[i]->name == "BN")
+		{
+			new_coords = pos.possible_n(vect[i]->x, vect[i]->y);
+		}
+		for (int j = 0; j < new_coords.size(); j++)
+		{
+			
+			b_copy.clear();
+			copy[i]->set(new_coords[j].first, new_coords[j].second);
+			d = board::distance(copy[i]->x, copy[i]->y, wk_copy->x, wk_copy->y);
+			if (copy[i]->name == "BK" && d < 2.0)
+			{
+				continue;
+			}
+			if (board::isfree(copy[i]->x, copy[i]->y))
+			{
+				
+				b_copy.nameplacer(copy);
+				b_copy.Att(copy);
+				if (b_copy.condition(wk_copy) == 1)
+				{
+					return copy[i];
+				}
+			}
+		}
+		copy[i]->set(first_x, first_y);
+	}
+
+	return nullptr;
 }
