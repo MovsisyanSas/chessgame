@@ -99,45 +99,64 @@ std::vector<std::pair<int, int>> possible_attack::possible_q(int x, int y, int r
 		possible_cells.push_back(std::make_pair(x, i));
 	}
 
-	int i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		possible_cells.push_back(std::make_pair(i, j));
-		i++;
-		j++;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	int i;
+	int j;
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		possible_cells.push_back(std::make_pair(i, j));
-		i--;
-		j++;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 7 && y != 7)
+	{
+		i = x + 1;
+		j = y + 1;
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			possible_cells.push_back(std::make_pair(i, j));
+			i++;
+			j++;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
+	
+	if (x != 0 && y != 7)
+	{
+		i = x - 1;
+		j = y + 1;
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			possible_cells.push_back(std::make_pair(i, j));
+			i--;
+			j++;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		possible_cells.push_back(std::make_pair(i, j));
-		i--;
-		j--;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 0 && y != 0)
+	{
+		i = x - 1;
+		j = y - 1;
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			possible_cells.push_back(std::make_pair(i, j));
+			i--;
+			j--;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		possible_cells.push_back(std::make_pair(i, j));
-		i++;
-		j--;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 7 && y != 0)
+	{
+		i = x + 1;
+		j = y - 1;
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			possible_cells.push_back(std::make_pair(i, j));
+			i++;
+			j--;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 
 	return possible_cells;
 }
@@ -146,45 +165,64 @@ std::vector<std::pair<int, int>> possible_attack::possible_q(int x, int y, int r
 std::vector<std::pair<int, int>> possible_attack::possible_b(int x, int y, std::string** matrix1) {
 	std::vector<std::pair<int, int>> possible_cells;
 
-	int i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" &&  matrix1[i][j] != "WK") {
-			break;
-		}
-		possible_cells.push_back(std::make_pair(i, j));
-		i++;
-		j++;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	int i;
+	int j;
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		possible_cells.push_back(std::make_pair(i, j));
-		i--;
-		j++;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 7 && y != 7)
+	{
+		i = x + 1;
+		j = y + 1;
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			possible_cells.push_back(std::make_pair(i, j));
+			i++;
+			j++;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		possible_cells.push_back(std::make_pair(i, j));
-		i--;
-		j--;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 0 && y != 7)
+	{
+		i = x - 1;
+		j = y + 1;
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			possible_cells.push_back(std::make_pair(i, j));
+			i--;
+			j++;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		possible_cells.push_back(std::make_pair(i, j));
-		i++;
-		j--;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 0 && y != 0)
+	{
+		i = x - 1;
+		j = y - 1;
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			possible_cells.push_back(std::make_pair(i, j));
+			i--;
+			j--;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
+
+	if (x != 7 && y != 0)
+	{
+		i = x + 1;
+		j = y - 1;
+		do {
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			possible_cells.push_back(std::make_pair(i, j));
+			i++;
+			j--;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 
 	return possible_cells;
 }

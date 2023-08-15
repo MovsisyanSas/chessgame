@@ -44,10 +44,10 @@ void board::Att(std::vector<figure*> vect) {
 			att.att_k(X, Y, matrix2);
 		}
 		else if (Name == "WQ" || Name == "BQ") {
-			att.att_q(X, Y, row, Name, matrix2, matrix1);
+			att.att_q(X, Y, row, matrix2, matrix1);
 		}
 		else if (Name == "WB" || Name == "BB") {
-			att.att_b(X, Y, Name, matrix2, matrix1);
+			att.att_b(X, Y, matrix2, matrix1);
 		}
 		else if (Name == "WN" || Name == "BN") {
 			att.att_n(X, Y,matrix2);
@@ -487,9 +487,9 @@ figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 				b_copy.nameplacer(copy);
 				b_copy.Att(copy);
 				b_copy.print();
-				b_copy.print_num();
 				if (b_copy.condition(wk_copy) == 1)
 				{
+					
 					return copy[i];
 				}
 			}

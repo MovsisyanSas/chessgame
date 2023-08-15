@@ -27,7 +27,7 @@ class chessminigame : public chessgame {
 	board b{row,column};
 	int x = 0, y = 0;
 private:
-	std::vector<std::string> figurecords = { "WK11","BK18","BN43","BB87","BQ82" };
+	std::vector<std::string> figurecords = { "WK11","BK31","BN23","BB32","BQ41" };
 	std::vector<figure*> figures;
 	void parser();
 	void deleter();

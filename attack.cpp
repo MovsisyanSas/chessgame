@@ -77,35 +77,35 @@ void attack::att_k(int x, int y, int** matrix2) {
 		}
 	}
 }
-void attack::att_q(int x, int y, int row, std::string name, int** matrix2, std::string** matrix1) {
-	matrix2[x][y] -= 4;
-	for (int i = x; i < row; i++)
+void attack::att_q(int x, int y, int row, int** matrix2, std::string** matrix1) {
+	//matrix2[x][y] -= 4;
+	for (int i = x + 1; i < row; i++)
 	{
-		if (matrix1[i][y] != "__" && matrix1[i][y] != name && matrix1[i][y] != "WK")
+		if (matrix1[i][y] != "__" && matrix1[i][y] != "WK")
 		{
 			break;
 		}
 		matrix2[i][y]++;
 	}
-	for (int i = x; i >= 0; i--)
+	for (int i = x - 1; i >= 0; i--)
 	{
-		if (matrix1[i][y] != "__" && matrix1[i][y] != name && matrix1[i][y] != "WK")
+		if (matrix1[i][y] != "__" && matrix1[i][y] != "WK")
 		{
 			break;
 		}
 		matrix2[i][y]++;
 	}
-	for (int i = 0; i < row; i++)
+	for (int i = y + 1; i < row; i++)
 	{
-		if (matrix1[x][i] != "__" && matrix1[x][i] != name && matrix1[x][i] != "WK")
+		if (matrix1[x][i] != "__" && matrix1[x][i] != "WK")
 		{
 			break;
 		}
 		matrix2[x][i]++;
 	}
-	for (int i = 0; i >= 0; i--)
+	for (int i = y - 1; i >= 0; i--)
 	{
-		if (matrix1[x][i] != "__" && matrix1[x][i] != name && matrix1[x][i] != "WK")
+		if (matrix1[x][i] != "__" && matrix1[x][i] != "WK")
 		{
 			break;
 		}
@@ -114,7 +114,7 @@ void attack::att_q(int x, int y, int row, std::string name, int** matrix2, std::
 
 	int i = x, j = y;
 	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
+		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
 			break;
 		}
 		matrix2[i][j]++;
@@ -124,7 +124,7 @@ void attack::att_q(int x, int y, int row, std::string name, int** matrix2, std::
 
 	i = x, j = y;
 	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
+		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
 			break;
 		}
 		matrix2[i][j]++;
@@ -134,7 +134,7 @@ void attack::att_q(int x, int y, int row, std::string name, int** matrix2, std::
 
 	i = x, j = y;
 	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
+		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
 			break;
 		}
 		matrix2[i][j]++;
@@ -144,7 +144,7 @@ void attack::att_q(int x, int y, int row, std::string name, int** matrix2, std::
 
 	i = x, j = y;
 	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
+		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
 			break;
 		}
 		matrix2[i][j]++;
@@ -152,11 +152,11 @@ void attack::att_q(int x, int y, int row, std::string name, int** matrix2, std::
 		j--;
 	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
 }
-void attack::att_b(int x, int y, std::string name, int** matrix2, std::string** matrix1) {
-	matrix2[x][y] -= 3;
+void attack::att_b(int x, int y, int** matrix2, std::string** matrix1) {
+	//matrix2[x][y] -= 3;
 	int i = x, j = y;
 	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
+		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
 			break;
 		}
 		matrix2[i][j]++;
@@ -166,7 +166,7 @@ void attack::att_b(int x, int y, std::string name, int** matrix2, std::string** 
 
 	i = x, j = y;
 	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
+		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
 			break;
 		}
 		matrix2[i][j]++;
@@ -176,7 +176,7 @@ void attack::att_b(int x, int y, std::string name, int** matrix2, std::string** 
 
 	i = x, j = y;
 	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
+		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
 			break;
 		}
 		matrix2[i][j]++;
@@ -186,7 +186,7 @@ void attack::att_b(int x, int y, std::string name, int** matrix2, std::string** 
 
 	i = x, j = y;
 	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != name && matrix1[i][j] != "WK") {
+		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
 			break;
 		}
 		matrix2[i][j]++;

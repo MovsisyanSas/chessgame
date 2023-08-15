@@ -57,6 +57,4 @@ matrix::~matrix() {
     }
     delete[] matrix1;
     delete[] matrix2;
-
-    std::cout << "Board deleted" << std::endl;
 }
