@@ -429,7 +429,7 @@ void board::clear() {
 	}
 }
 
-figure* board::find_m1(std::vector<figure*> vect) {
+figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 	board b_copy(8,8);
 	possible_attack pos;
 	std::vector<figure*> copy = vect;
@@ -461,11 +461,11 @@ figure* board::find_m1(std::vector<figure*> vect) {
 		}
 		else if (vect[i]->name == "BQ")
 		{	
-			new_coords = pos.possible_q(vect[i]->x, vect[i]->y, 8, vect[i]->name, b_copy.matrix1);
+			new_coords = pos.possible_q(vect[i]->x, vect[i]->y, 8, vect[i]->name, b_2.matrix1);
 		}
 		else if (vect[i]->name == "BB")
 		{		
-			new_coords = pos.possible_b(vect[i]->x, vect[i]->y, b_copy.matrix1);
+			new_coords = pos.possible_b(vect[i]->x, vect[i]->y, b_2.matrix1);
 		}
 		else if (vect[i]->name == "BN")
 		{
@@ -486,6 +486,8 @@ figure* board::find_m1(std::vector<figure*> vect) {
 				
 				b_copy.nameplacer(copy);
 				b_copy.Att(copy);
+				b_copy.print();
+				b_copy.print_num();
 				if (b_copy.condition(wk_copy) == 1)
 				{
 					return copy[i];
@@ -495,5 +497,6 @@ figure* board::find_m1(std::vector<figure*> vect) {
 		copy[i]->set(first_x, first_y);
 	}
 
+	
 	return nullptr;
 }

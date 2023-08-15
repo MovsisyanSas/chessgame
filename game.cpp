@@ -81,7 +81,7 @@ void chessminigame::deleter() {
 
 void chessminigame::m1() {
 	std::vector<figure*> figures_c(figures.begin(), figures.end());
-	figure* mate_figure = b.find_m1(figures_c);
+	figure* mate_figure = b.find_m1(figures_c,b);
 	if (mate_figure)
 	{
 		std::cout << "Mate from 1: " << mate_figure->name <<"->" << mate_figure->y + 1 << ',' << mate_figure->x + 1 << "(x,y)" << std::endl;
