@@ -110,261 +110,201 @@ int board::condition(figure* k) {
 	{
 		if (x != 0 && x != 7)
 		{
-			if (matrix2[x][y + 1] != 0 && matrix1[x][y + 1] == "__")
+			if (matrix2[x][y + 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x][y + 1] >= 2 && matrix1[x][y + 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x + 1][y + 1] != 0 && matrix1[x + 1][y + 1] == "__")
+			if (matrix2[x + 1][y + 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x + 1][y + 1] >= 2 && matrix1[x + 1][y + 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x + 1][y] != 0 && matrix1[x + 1][y] == "__")
+			if (matrix2[x + 1][y] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x + 1][y] >= 2 && matrix1[x + 1][y] != "__") {
-				count--;
-			}
-
-			if (matrix2[x + 1][y - 1] != 0 && matrix1[x + 1][y - 1] == "__")
+			if (matrix2[x + 1][y - 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x + 1][y - 1] >= 2 && matrix1[x + 1][y - 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x][y - 1] != 0 && matrix1[x][y - 1] == "__")
+			if (matrix2[x][y - 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x][y - 1] >= 2 && matrix1[x][y - 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x - 1][y - 1] != 0 && matrix1[x - 1][y - 1] == "__")
+			if (matrix2[x - 1][y - 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x - 1][y - 1] >= 2 && matrix1[x - 1][y - 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x - 1][y] != 0 && matrix1[x - 1][y] == "__")
+			if (matrix2[x - 1][y] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x - 1][y] >= 2 && matrix1[x - 1][y] != "__") {
-				count--;
-			}
-
-			if (matrix2[x - 1][y + 1] != 0 && matrix1[x - 1][y + 1] == "__")
+			if (matrix2[x - 1][y + 1] != 0)
 			{
-				count--;
-			}
-			else if (matrix2[x - 1][y + 1] >= 2 && matrix1[x - 1][y + 1] != "__") {
 				count--;
 			}
 		}
 		else if (x == 0) {
 			min = 3;
-			if (matrix2[x][y + 1] != 0 && matrix1[x][y + 1] == "__")
+			if (matrix2[x][y + 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x][y + 1] >= 2 && matrix1[x][y + 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x + 1][y + 1] != 0 && matrix1[x + 1][y + 1] == "__")
+			if (matrix2[x + 1][y + 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x + 1][y + 1] >= 2 && matrix1[x + 1][y + 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x + 1][y] != 0 && matrix1[x + 1][y] == "__")
+			if (matrix2[x + 1][y] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x + 1][y] >= 2 && matrix1[x + 1][y] != "__") {
-				count--;
-			}
-
-			if (matrix2[x + 1][y - 1] != 0 && matrix1[x + 1][y - 1] == "__")
+			if (matrix2[x + 1][y - 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x + 1][y - 1] >= 2 && matrix1[x + 1][y - 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x][y - 1] != 0 && matrix1[x][y - 1] == "__")
+			if (matrix2[x][y - 1] != 0)
 			{
-				count--;
-			}
-			else if (matrix2[x][y - 1] >= 2 && matrix1[x][y - 1] != "__") {
 				count--;
 			}
 		}
 		else if (x == 7) {
 			min = 3;
-			if (matrix2[x][y - 1] != 0 && matrix1[x][y - 1] == "__")
+			if (matrix2[x][y - 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x][y - 1] >= 2 && matrix1[x][y - 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x - 1][y - 1] != 0 && matrix1[x - 1][y - 1] == "__")
+			if (matrix2[x - 1][y - 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x - 1][y - 1] >= 2 && matrix1[x - 1][y - 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x - 1][y] != 0 && matrix1[x - 1][y] == "__")
+			if (matrix2[x - 1][y] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x - 1][y] >= 2 && matrix1[x - 1][y] != "__") {
-				count--;
-			}
-
-			if (matrix2[x - 1][y + 1] != 0 && matrix1[x - 1][y + 1] == "__")
+			if (matrix2[x - 1][y + 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x - 1][y + 1] >= 2 && matrix1[x - 1][y + 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x][y + 1] != 0 && matrix1[x][y + 1] == "__")
+			if (matrix2[x][y + 1] != 0)
 			{
-				count--;
-			}
-			else if (matrix2[x][y + 1] >= 2 && matrix1[x][y + 1] != "__") {
 				count--;
 			}
 		}
 	}
 	else if (y == 0)
 	{
-		min = 5;
+		
 		if (x == 0)
 		{
-			if (matrix2[x][y + 1] != 0 && matrix1[x][y + 1] == "__")
+			min = 5;
+			if (matrix2[x][y + 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x][y + 1] >= 2 && matrix1[x][y + 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x + 1][y + 1] != 0 && matrix1[x + 1][y + 1] == "__")
+			if (matrix2[x + 1][y + 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x + 1][y + 1] >= 2 && matrix1[x + 1][y + 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x + 1][y] != 0 && matrix1[x + 1][y] == "__")
+			if (matrix2[x + 1][y] != 0)
 			{
-				count--;
-			}
-			else if (matrix2[x + 1][y] >= 2 && matrix1[x + 1][y] != "__") {
 				count--;
 			}
 		}
 		else if (x == 7) {
-			if (matrix2[x][y + 1] != 0 && matrix1[x][y + 1] == "__")
+			min = 5;
+			if (matrix2[x][y + 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x][y + 1] >= 2 && matrix1[x][y + 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x - 1][y + 1] != 0 && matrix1[x - 1][y + 1] == "__")
+			if (matrix2[x - 1][y + 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x - 1][y + 1] >= 2 && matrix1[x - 1][y + 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x - 1][y] != 0 && matrix1[x - 1][y] == "__")
+			if (matrix2[x - 1][y] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x - 1][y] >= 2 && matrix1[x - 1][y] != "__") {
+		}
+		else
+		{
+			min = 3;
+			if (matrix2[x][y + 1] != 0)
+			{
+				count--;
+			}
+			if (matrix2[x + 1][y + 1] != 0)
+			{
+				count--;
+			}
+			if (matrix2[x + 1][y] != 0)
+			{
+				count--;
+			}
+			if (matrix2[x - 1][y + 1] != 0)
+			{
+				count--;
+			}
+			if (matrix2[x - 1][y] != 0)
+			{
 				count--;
 			}
 		}
 	}
 	else if (y == 7)
 	{
-		min = 5;
+		
 		if (x == 0)
 		{
-			if (matrix2[x][y - 1] != 0 && matrix1[x][y - 1] == "__")
+			min = 5;
+			if (matrix2[x][y - 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x][y - 1] >= 2 && matrix1[x][y - 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x + 1][y - 1] != 0 && matrix1[x + 1][y - 1] == "__")
+			if (matrix2[x + 1][y - 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x + 1][y - 1] >= 2 && matrix1[x + 1][y - 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x + 1][y] != 0 && matrix1[x + 1][y] == "__")
+			if (matrix2[x + 1][y] != 0)
 			{
-				count--;
-			}
-			else if (matrix2[x + 1][y] >= 2 && matrix1[x + 1][y] != "__") {
 				count--;
 			}
 		}
 		else if (x == 7) {
-			if (matrix2[x][y - 1] != 0 && matrix1[x][y - 1] == "__")
+			min = 5;
+			if (matrix2[x][y - 1] != 0)
 			{
-				count--;
-			}
-			else if (matrix2[x][y - 1] >= 2 && matrix1[x][y - 1] != "__") {
 				count--;
 			}
 
-			if (matrix2[x - 1][y - 1] != 0 && matrix1[x - 1][y - 1] == "__")
+			if (matrix2[x - 1][y - 1] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x - 1][y - 1] >= 2 && matrix1[x - 1][y - 1] != "__") {
-				count--;
-			}
-
-			if (matrix2[x - 1][y] != 0 && matrix1[x - 1][y] == "__")
+			if (matrix2[x - 1][y] != 0)
 			{
 				count--;
 			}
-			else if (matrix2[x - 1][y] >= 2 && matrix1[x - 1][y] != "__") {
+		}
+		else
+		{
+			min = 3;
+			if (matrix2[x][y - 1] != 0)
+			{
+				count--;
+			}
+			if (matrix2[x + 1][y - 1] != 0)
+			{
+				count--;
+			}
+			if (matrix2[x + 1][y] != 0)
+			{
+				count--;
+			}
+			if (matrix2[x - 1][y - 1] != 0)
+			{
+				count--;
+			}
+			if (matrix2[x - 1][y] != 0)
+			{
 				count--;
 			}
 		}
@@ -487,6 +427,7 @@ figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 				b_copy.nameplacer(copy);
 				b_copy.Att(copy);
 				b_copy.print();
+				b_copy.print_num();
 				if (b_copy.condition(wk_copy) == 1)
 				{
 					

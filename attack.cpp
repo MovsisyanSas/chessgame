@@ -2,7 +2,6 @@
 
 
 void attack::att_k(int x, int y, int** matrix2) {
-	matrix2[x][y]++;
 	if (y != 0 && y != 7)
 	{
 		if (x != 0 && x != 7)
@@ -78,125 +77,160 @@ void attack::att_k(int x, int y, int** matrix2) {
 	}
 }
 void attack::att_q(int x, int y, int row, int** matrix2, std::string** matrix1) {
-	//matrix2[x][y] -= 4;
 	for (int i = x + 1; i < row; i++)
 	{
+		matrix2[i][y]++;
 		if (matrix1[i][y] != "__" && matrix1[i][y] != "WK")
 		{
 			break;
 		}
-		matrix2[i][y]++;
 	}
 	for (int i = x - 1; i >= 0; i--)
 	{
+		matrix2[i][y]++;
 		if (matrix1[i][y] != "__" && matrix1[i][y] != "WK")
 		{
 			break;
 		}
-		matrix2[i][y]++;
 	}
 	for (int i = y + 1; i < row; i++)
 	{
+		matrix2[x][i]++;
 		if (matrix1[x][i] != "__" && matrix1[x][i] != "WK")
 		{
 			break;
 		}
-		matrix2[x][i]++;
 	}
 	for (int i = y - 1; i >= 0; i--)
 	{
+		matrix2[x][i]++;
 		if (matrix1[x][i] != "__" && matrix1[x][i] != "WK")
 		{
 			break;
 		}
-		matrix2[x][i]++;
 	}
 
-	int i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		matrix2[i][j]++;
-		i++;
-		j++;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	int i;
+	int j;
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		matrix2[i][j]++;
-		i--;
-		j++;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 7 && y != 7)
+	{
+		i = x + 1;
+		j = y + 1;
+		do {
+			matrix2[i][j]++;
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			i++;
+			j++;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		matrix2[i][j]++;
-		i--;
-		j--;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 0 && y != 7)
+	{
+		i = x - 1;
+		j = y + 1;
+		do {
+			matrix2[i][j]++;
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			i--;
+			j++;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		matrix2[i][j]++;
-		i++;
-		j--;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 0 && y != 0)
+	{
+		i = x - 1;
+		j = y - 1;
+		do {
+			matrix2[i][j]++;
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			i--;
+			j--;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
+
+	if (x != 7 && y != 0)
+	{
+		i = x + 1;
+		j = y - 1;
+		do {
+			matrix2[i][j]++;
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			i++;
+			j--;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 }
 void attack::att_b(int x, int y, int** matrix2, std::string** matrix1) {
-	//matrix2[x][y] -= 3;
-	int i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		matrix2[i][j]++;
-		i++;
-		j++;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	int i;
+	int j;
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		matrix2[i][j]++;
-		i--;
-		j++;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 7 && y != 7)
+	{
+		i = x + 1;
+		j = y + 1;
+		do {
+			matrix2[i][j]++;
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			i++;
+			j++;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		matrix2[i][j]++;
-		i--;
-		j--;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 0 && y != 7)
+	{
+		i = x - 1;
+		j = y + 1;
+		do {
+			matrix2[i][j]++;
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			i--;
+			j++;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 
-	i = x, j = y;
-	do {
-		if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
-			break;
-		}
-		matrix2[i][j]++;
-		i++;
-		j--;
-	} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	if (x != 0 && y != 0)
+	{
+		i = x - 1;
+		j = y - 1;
+		do {
+			matrix2[i][j]++;
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			i--;
+			j--;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
+
+	if (x != 7 && y != 0)
+	{
+		i = x + 1;
+		j = y - 1;
+		do {
+			matrix2[i][j]++;
+			if (matrix1[i][j] != "__" && matrix1[i][j] != "WK") {
+				break;
+			}
+			i++;
+			j--;
+		} while (i >= 0 && i < 8 && j >= 0 && j < 8);
+	}
 }
 
 void attack::att_n(int x, int y, int** matrix2) {
-	matrix2[x][y]++;
 	if (x != 1 && x != 0 && x != 6 && x != 7)
 	{
 		if (y == 1) {
