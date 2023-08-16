@@ -68,7 +68,7 @@ board::board(int a, int b) : matrix(a,b) {
 }
 
 void board::print() {
-	std::cout << "  1   2   3   4   5   6   7   8   (x)" << std::endl;
+	std::cout << "  A   B   C   D   E   F   G   H   (x)" << std::endl;
 	for (int i = 0; i < row; i++)
 	{
 		std::cout << i + 1 << ' ';
@@ -86,7 +86,7 @@ void board::print() {
 }
 
 void board::print_num() {
-	std::cout << " 1  2  3  4  5  6  7  8  (x)" << std::endl;
+	std::cout << "  A   B   C   D   E   F   G   H  (x)" << std::endl;
 	for (int i = 0; i < row; i++)
 	{
 		std::cout << i + 1 << ' ';
@@ -426,8 +426,8 @@ figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 				
 				b_copy.nameplacer(copy);
 				b_copy.Att(copy);
-				b_copy.print();
-				b_copy.print_num();
+				//b_copy.print();
+				//b_copy.print_num();
 				if (b_copy.condition(wk_copy) == 1)
 				{
 					
@@ -437,7 +437,5 @@ figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 		}
 		copy[i]->set(first_x, first_y);
 	}
-
-	
 	return nullptr;
 }

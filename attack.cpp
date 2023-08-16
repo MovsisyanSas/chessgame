@@ -2,79 +2,71 @@
 
 
 void attack::att_k(int x, int y, int** matrix2) {
-	if (y != 0 && y != 7)
-	{
-		if (x != 0 && x != 7)
-		{
-			matrix2[x][y + 1]++;
-			matrix2[x][y - 1]++;
-			matrix2[x + 1][y + 1]++;
-			matrix2[x - 1][y - 1]++;
-			matrix2[x - 1][y + 1]++;
-			matrix2[x + 1][y - 1]++;
-			matrix2[x + 1][y]++;
-			matrix2[x - 1][y]++;
+	if (y != 0 && y != 7) {
+		if (x != 0 && x != 7) {
+			++matrix2[x][y + 1];
+			++matrix2[x][y - 1];
+			++matrix2[x + 1][y + 1];
+			++matrix2[x - 1][y - 1];
+			++matrix2[x - 1][y + 1];
+			++matrix2[x + 1][y - 1];
+			++matrix2[x + 1][y];
+			++matrix2[x - 1][y];
 		}
-		if (x == 0)
-		{
-			matrix2[x][y + 1]++;
-			matrix2[x + 1][y + 1]++;
-			matrix2[x + 1][y]++;
-			matrix2[x + 1][y - 1]++;
-			matrix2[x][y - 1]++;
+		if (x == 0) {
+			++matrix2[x][y + 1];
+			++matrix2[x + 1][y + 1];
+			++matrix2[x + 1][y];
+			++matrix2[x + 1][y - 1];
+			++matrix2[x][y - 1];
 		}
 		else if (x == 7) {
-			matrix2[x][y + 1]++;
-			matrix2[x - 1][y + 1]++;
-			matrix2[x - 1][y]++;
-			matrix2[x - 1][y - 1]++;
-			matrix2[x][y - 1]++;
+			++matrix2[x][y + 1];
+			++matrix2[x - 1][y + 1];
+			++matrix2[x - 1][y];
+			++matrix2[x - 1][y - 1];
+			++matrix2[x][y - 1];
 		}
 	}
-	else if (y == 0)
-	{
-		if (x != 0 && x != 7)
-		{
-			matrix2[x][y + 1]++;
-			matrix2[x + 1][y + 1]++;
-			matrix2[x - 1][y + 1]++;
-			matrix2[x + 1][y]++;
-			matrix2[x - 1][y]++;
+	else if (y == 0) {
+		if (x != 0 && x != 7) {
+			++matrix2[x][y + 1];
+			++matrix2[x + 1][y + 1];
+			++matrix2[x - 1][y + 1];
+			++matrix2[x + 1][y];
+			++matrix2[x - 1][y];
 		}
-		if (x == 0)
-		{
-			matrix2[x][y + 1]++;
-			matrix2[x + 1][y + 1]++;
-			matrix2[x + 1][y]++;
+		if (x == 0) {
+			++matrix2[x][y + 1];
+			++matrix2[x + 1][y + 1];
+			++matrix2[x + 1][y];
 		}
 		else if (x == 7) {
-			matrix2[x][y + 1]++;
-			matrix2[x - 1][y + 1]++;
-			matrix2[x - 1][y]++;
+			++matrix2[x][y + 1];
+			++matrix2[x - 1][y + 1];
+			++matrix2[x - 1][y];
 		}
 	}
-	else if (y == 7)
-	{
-		if (x != 0 && x != 7)
-		{
-			matrix2[x][y + 1]++;
-			matrix2[x + 1][y + 1]++;
-			matrix2[x - 1][y + 1]++;
-			matrix2[x + 1][y]++;
-			matrix2[x - 1][y]++;
+	else if (y == 7) {
+		if (x != 0 && x != 7) {
+			++matrix2[x][y - 1];
+			++matrix2[x + 1][y - 1];
+			++matrix2[x - 1][y - 1];
+			++matrix2[x + 1][y];
+			++matrix2[x - 1][y];
 		}
-		if (x == 0)
-		{
-			matrix2[x][y - 1]++;
-			matrix2[x + 1][y - 1]++;
-			matrix2[x + 1][y]++;
+		if (x == 0) {
+			++matrix2[x][y - 1];
+			++matrix2[x + 1][y - 1];
+			++matrix2[x + 1][y];
 		}
 		else if (x == 7) {
-			matrix2[x][y - 1]++;
-			matrix2[x - 1][y - 1]++;
-			matrix2[x - 1][y]++;
+			++matrix2[x][y - 1];
+			++matrix2[x - 1][y - 1];
+			++matrix2[x - 1][y];
 		}
 	}
+
 }
 void attack::att_q(int x, int y, int row, int** matrix2, std::string** matrix1) {
 	for (int i = x + 1; i < row; i++)

@@ -49,7 +49,7 @@ void chessminigame::parser(){
 		figure* Figure;
 		color = full[0];
 		name = full[1];
-		x = game::converter(full[2]);
+		x = full[2] <= 90 ? full[2] - 64 : full[2] - 96;
 		y = game::converter(full[3]);
 
 		switch (name)
@@ -73,18 +73,19 @@ void chessminigame::parser(){
 	}
 }
 void chessminigame::deleter() {
-	for (int i = 0; i < figures.size(); i++)
-	{
-		delete[] figures[i];
+	for (int i = 0; i < figures.size(); i++) {
+		figures[i] = nullptr;
+		delete figures[i];
 	}
 }
 
 void chessminigame::m1() {
 	std::vector<figure*> figures_c(figures.begin(), figures.end());
 	figure* mate_figure = b.find_m1(figures_c,b);
-	if (mate_figure)
+	if (mate_figure != nullptr)
 	{
-		std::cout << "Mate from 1: " << mate_figure->name <<"->" << mate_figure->y + 1 << ',' << mate_figure->x + 1 << "(x,y)" << std::endl;
+		char c = mate_figure->y + 65;
+		std::cout << "Mate from 1: " << mate_figure->name <<"->" << c << mate_figure->x + 1 << "(x,y)" << std::endl;
 	}
 	else
 	{
