@@ -3,6 +3,8 @@
 
 #include "matrix.h"
 #include <vector>
+#include <iostream>
+#include <fstream>
 
 class game {
 protected:
@@ -15,6 +17,7 @@ public:
 
 class chessgame :public game {
 public:
+	std::string txtReader(std::string line);
 	chessgame() = default;
 	void start() override = 0;
 	void finish() override = 0;
@@ -26,14 +29,15 @@ class chessminigame : public chessgame {
 	const int row = 8;
 	board b{row,column};
 	int x = 0, y = 0;
+	std::ifstream txt{"./coord.txt"};
 private:
-	std::vector<std::string> figurecords = { "WKh1","BKH3","BNa3","BBA7","BQh8" };
+	std::vector<std::string> figurecords;
 	std::vector<figure*> figures;
 	void parser();
 	void deleter();
 	void m1();
 public:
-	chessminigame() = default;
+	chessminigame();
 	void start() override;
 	void finish()  override;
 };

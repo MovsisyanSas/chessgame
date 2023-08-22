@@ -130,3 +130,41 @@ void chessminigame::finish() {
 	}
 	deleter();
 }
+
+std::string chessgame::txtReader(std::string line) {
+	std::string result = "";
+
+	if (line.find("Black") != std::string::npos) {
+		result += "B";
+	}
+	else if (line.find("White") != std::string::npos) {
+		result += "W";
+	}
+
+	if (line.find("King") != std::string::npos) {
+		result += "K";
+	}
+	else if (line.find("Queen") != std::string::npos) {
+		result += "Q";
+	}
+	else if (line.find("Bishop") != std::string::npos) {
+		result += "B";
+	}
+	else if (line.find("Knight") != std::string::npos) {
+		result += "N";
+	}
+
+	result += line[line.length() - 3];
+	result += line[line.length() - 2];
+
+	return result;
+}
+
+
+chessminigame::chessminigame() {
+	std::string line;
+	while (std::getline(txt, line))
+	{
+		figurecords.push_back(chessgame::txtReader(line));
+	}
+}
