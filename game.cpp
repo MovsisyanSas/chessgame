@@ -168,3 +168,59 @@ chessminigame::chessminigame() {
 		figurecords.push_back(chessgame::txtReader(line));
 	}
 }
+
+void chessminigame::add_figure(std::string s) {
+	try {
+		if (s.length() < 4)
+		{
+			throw("Unsuitable form of string");
+		}
+		int	y = game::converter(s[3]);
+		int x = s[2] <= 90 ? s[2] - 64 : s[2] - 96;
+		if (x < 0 || x > 8 || y < 0 || y > 8)
+		{
+			throw("Coords are out of the board");
+		}
+		std::string color;
+		color = s[0];
+		char name = s[1];
+		figure* Figure;
+		switch (name)
+		{
+		case 'K':
+			Figure = new king(color, x, y);
+			break;
+		case 'Q':
+			Figure = new queen(color, x, y);
+			break;
+		case 'B':
+			Figure = new bishop(color, x, y);
+			break;
+		case 'N':
+			Figure = new knight(color, x, y);
+			break;
+		default:
+			break;
+		}
+		figures.push_back(Figure);
+
+		b.nameplacer(figures);
+		b.Att(figures);
+		system("cls");
+
+		for (int i = 0; i < figures.size(); i++)
+		{
+			if (figures[i]->name == "WK")
+			{
+				cond = b.condition(figures[i]);
+				break;
+			}
+		}
+	}
+	catch (std::string s) {
+		std::cout << s << std::endl;
+	}
+	catch (...) {
+		std::cout << "unexpected error" << std::endl;
+	}
+}

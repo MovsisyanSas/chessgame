@@ -40,6 +40,7 @@ public:
 	chessminigame();
 	void start() override;
 	void finish()  override;
+	void add_figure(std::string s);
 };
 
 
