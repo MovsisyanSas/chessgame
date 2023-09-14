@@ -86,6 +86,7 @@ void chessminigame::m1() {
 	{
 		char c = mate_figure->y + 65;
 		std::cout << "Mate from 1: " << mate_figure->name <<"->" << c << mate_figure->x + 1 << "(x,y)" << std::endl;
+		
 	}
 	else
 	{
@@ -118,10 +119,17 @@ void chessminigame::finish() {
 		break;
 	case 2:
 		std::cout << "Stalemate " << std::endl;
+		//b.print_num_b();
 		m1();
 		break;
 	case 3:
+		std::cout << "No win or draw condition(check) " << std::endl;
+		//b.print_num_b();
+		m1();
+		break;
+	case 4:
 		std::cout << "No win or draw condition " << std::endl;
+		//b.print_num_b();
 		m1();
 		break;
 	default:
@@ -154,8 +162,8 @@ std::string chessgame::txtReader(std::string line) {
 		result += "N";
 	}
 
-	result += line[line.length() - 3];
 	result += line[line.length() - 2];
+	result += line[line.length() - 1];
 
 	return result;
 }
@@ -183,12 +191,16 @@ void chessminigame::add_figure(std::string s) {
 		}
 		std::string color;
 		color = s[0];
+
+		if (color == "W")
+			throw("White figure addition is temporary unavailable");
+
 		char name = s[1];
 		figure* Figure;
 		switch (name)
 		{
 		case 'K':
-			Figure = new king(color, x, y);
+			throw("Only one king of each side is allowed to be on the board");
 			break;
 		case 'Q':
 			Figure = new queen(color, x, y);
@@ -203,7 +215,7 @@ void chessminigame::add_figure(std::string s) {
 			break;
 		}
 		figures.push_back(Figure);
-
+		b.clear();
 		b.nameplacer(figures);
 		b.Att(figures);
 		system("cls");

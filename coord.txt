@@ -1,5 +1,6 @@
-White King A1 
-Black King A3 
-Black Queen A8 
-Black Bishop H8 
-Black Knight C3 
+White King A1
+Black King A3
+Black Queen A8
+Black Bishop H8
+Black Knight C3
+White Bishop C1

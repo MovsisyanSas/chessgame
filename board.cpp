@@ -4,6 +4,9 @@
 double board::distance(int x1, int y1, int x2, int y2) {
 	double X = std::pow(x1 - x2, 2);
 	double Y = std::pow(y1 - y2, 2);
+	if ((x1 - x2) == (y1 - y2)) {
+		return std::pow(X + Y, 0.5) - 0.1;
+	}
 	return std::pow(X + Y, 0.5);
 }
 
@@ -43,14 +46,26 @@ void board::Att(std::vector<figure*> vect) {
 		{
 			att.att_k(X, Y, matrix2);
 		}
-		else if (Name == "WQ" || Name == "BQ") {
+		else if (Name == "BQ") {
 			att.att_q(X, Y, row, matrix2, matrix1);
 		}
-		else if (Name == "WB" || Name == "BB") {
+		else if (Name == "BB") {
 			att.att_b(X, Y, matrix2, matrix1);
 		}
-		else if (Name == "WN" || Name == "BN") {
+		else if (Name == "BN") {
 			att.att_n(X, Y,matrix2);
+		}
+		else if (Name == "WK") {
+			att.att_k(X, Y, matrix3);
+		}
+		else if (Name == "WQ") {
+			att.att_q(X, Y, row, matrix3, matrix1);
+		}
+		else if (Name == "WB") {
+			att.att_b(X, Y, matrix3, matrix1);
+		}
+		else if (Name == "WN") {
+			att.att_n(X, Y, matrix3);
 		}
 	}
 }
@@ -85,14 +100,14 @@ void board::print() {
 
 }
 
-void board::print_num() {
+void board::print_num_b() {
 	std::cout << "  A   B   C   D   E   F   G   H  (x)" << std::endl;
 	for (int i = 0; i < row; i++)
 	{
 		std::cout << i + 1 << ' ';
 		for (int j = 0; j < column; j++)
 		{
-			std::cout << matrix2[i][j] << "  ";
+			std::cout << matrix2[i][j] << "   ";
 		}
 		std::cout << std::endl;
 		std::cout << std::endl;
@@ -101,90 +116,110 @@ void board::print_num() {
 	std::cout << std::endl;
 }
 
+void board::print_num_w() {
+	std::cout << "  A   B   C   D   E   F   G   H  (x)" << std::endl;
+	for (int i = 0; i < row; i++)
+	{
+		std::cout << i + 1 << ' ';
+		for (int j = 0; j < column; j++)
+		{
+			std::cout << matrix3[i][j] << "   ";
+		}
+		std::cout << std::endl;
+		std::cout << std::endl;
+	}
+	std::cout << "(y)" << std::endl;
+	std::cout << std::endl;
+}
 int board::condition(figure* k) {
+	int** mat = (k->name == "WK") ? matrix2 : matrix3;
+	int** mat2 = (k->name == "WK") ? matrix3 : matrix2;
+
 	int count = 8;
 	int min = 0;
 	int x = k->x;
 	int y = k->y;
+	bool friendly = true;
+
 	if (y != 0 && y != 7)
 	{
 		if (x != 0 && x != 7)
 		{
-			if (matrix2[x][y + 1] != 0)
+			if (mat[x][y + 1] != 0 || mat2[x][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y + 1] != 0)
+			if (mat[x + 1][y + 1] != 0 || mat2[x + 1][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y] != 0)
+			if (mat[x + 1][y] != 0 || mat2[x + 1][y] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y - 1] != 0)
+			if (mat[x + 1][y - 1] != 0 || mat2[x + 1][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x][y - 1] != 0)
+			if (mat[x][y - 1] != 0 || mat2[x][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y - 1] != 0)
+			if (mat[x - 1][y - 1] != 0 || mat2[x - 1][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y] != 0)
+			if (mat[x - 1][y] != 0 || mat2[x - 1][y] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y + 1] != 0)
+			if (mat[x - 1][y + 1] != 0 || mat2[x - 1][y + 1] != 0)
 			{
 				count--;
 			}
 		}
 		else if (x == 0) {
 			min = 3;
-			if (matrix2[x][y + 1] != 0)
+			if (mat[x][y + 1] != 0 || mat2[x][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y + 1] != 0)
+			if (mat[x + 1][y + 1] != 0 || mat2[x + 1][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y] != 0)
+			if (mat[x + 1][y] != 0 || mat2[x + 1][y] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y - 1] != 0)
+			if (mat[x + 1][y - 1] != 0 || mat2[x + 1][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x][y - 1] != 0)
+			if (mat[x][y - 1] != 0 || mat2[x][y - 1] != 0)
 			{
 				count--;
 			}
 		}
 		else if (x == 7) {
 			min = 3;
-			if (matrix2[x][y - 1] != 0)
+			if (mat[x][y - 1] != 0 || mat2[x][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y - 1] != 0)
+			if (mat[x - 1][y - 1] != 0 || mat2[x - 1][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y] != 0)
+			if (mat[x - 1][y] != 0 || mat2[x - 1][y] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y + 1] != 0)
+			if (mat[x - 1][y + 1] != 0 || mat2[x - 1][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x][y + 1] != 0)
+			if (mat[x][y + 1] != 0 || mat2[x][y + 1] != 0)
 			{
 				count--;
 			}
@@ -192,34 +227,34 @@ int board::condition(figure* k) {
 	}
 	else if (y == 0)
 	{
-		
+
 		if (x == 0)
 		{
 			min = 5;
-			if (matrix2[x][y + 1] != 0)
+			if (mat[x][y + 1] != 0 || mat2[x][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y + 1] != 0)
+			if (mat[x + 1][y + 1] != 0 || mat2[x + 1][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y] != 0)
+			if (mat[x + 1][y] != 0 || mat2[x + 1][y] != 0)
 			{
 				count--;
 			}
 		}
 		else if (x == 7) {
 			min = 5;
-			if (matrix2[x][y + 1] != 0)
+			if (mat[x][y + 1] != 0 || mat2[x][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y + 1] != 0)
+			if (mat[x - 1][y + 1] != 0 || mat2[x - 1][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y] != 0)
+			if (mat[x - 1][y] != 0 || mat2[x - 1][y] != 0)
 			{
 				count--;
 			}
@@ -227,23 +262,23 @@ int board::condition(figure* k) {
 		else
 		{
 			min = 3;
-			if (matrix2[x][y + 1] != 0)
+			if (mat[x][y + 1] != 0 || mat2[x][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y + 1] != 0)
+			if (mat[x + 1][y + 1] != 0 || mat2[x + 1][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y] != 0)
+			if (mat[x + 1][y] != 0 || mat2[x + 1][y] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y + 1] != 0)
+			if (mat[x - 1][y + 1] != 0 || mat2[x - 1][y + 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y] != 0)
+			if (mat[x - 1][y] != 0 || mat2[x - 1][y] != 0)
 			{
 				count--;
 			}
@@ -251,35 +286,35 @@ int board::condition(figure* k) {
 	}
 	else if (y == 7)
 	{
-		
+
 		if (x == 0)
 		{
 			min = 5;
-			if (matrix2[x][y - 1] != 0)
+			if (mat[x][y - 1] != 0 || mat2[x][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y - 1] != 0)
+			if (mat[x + 1][y - 1] != 0 || mat2[x + 1][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y] != 0)
+			if (mat[x + 1][y] != 0 || mat2[x + 1][y] != 0)
 			{
 				count--;
 			}
 		}
 		else if (x == 7) {
 			min = 5;
-			if (matrix2[x][y - 1] != 0)
+			if (mat[x][y - 1] != 0 || mat2[x][y - 1] != 0)
 			{
 				count--;
 			}
 
-			if (matrix2[x - 1][y - 1] != 0)
+			if (mat[x - 1][y - 1] != 0 || mat2[x - 1][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y] != 0)
+			if (mat[x - 1][y] != 0 || mat2[x - 1][y] != 0)
 			{
 				count--;
 			}
@@ -287,23 +322,23 @@ int board::condition(figure* k) {
 		else
 		{
 			min = 3;
-			if (matrix2[x][y - 1] != 0)
+			if (mat[x][y - 1] != 0 || mat2[x][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y - 1] != 0)
+			if (mat[x + 1][y - 1] != 0 || mat2[x + 1][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x + 1][y] != 0)
+			if (mat[x + 1][y] != 0 || mat2[x + 1][y] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y - 1] != 0)
+			if (mat[x - 1][y - 1] != 0 || mat2[x - 1][y - 1] != 0)
 			{
 				count--;
 			}
-			if (matrix2[x - 1][y] != 0)
+			if (mat[x - 1][y] != 0 || mat2[x - 1][y] != 0)
 			{
 				count--;
 			}
@@ -314,57 +349,64 @@ int board::condition(figure* k) {
 	{
 		if (count == 0)
 		{
-			if (matrix2[x][y] > 0)
+			if (mat[x][y] > 0)
 			{
 				return 1; //mate
 			}
-			else if (matrix2[x][y] == 0)
+			else if (mat[x][y] == 0)
 			{
 				return 2; //stalemate
 			}
 		}
-		else {
+		else if (mat[x][y] > 0) {
 			return 3;
 		}
+		return 4;
 	}
 	else if (min == 5) {
 		if (count == 5)
 		{
-			if (matrix2[x][y] > 0)
+			if (mat[x][y] > 0)
 			{
 				return 1; //mate
 			}
-			else if (matrix2[x][y] == 0)
+			else if (mat[x][y] == 0)
 			{
 				return 2; //stalemate
 			}
 		}
-		else {
+		else if(mat[x][y] > 0) {
 			return 3;
 		}
+		return 4;
 	}
 	else if (min == 3) {
 		if (count == 3)
 		{
-			if (matrix2[x][y] > 0)
+			if (mat[x][y] > 0)
 			{
 				return 1; //mate
 			}
-			else if (matrix2[x][y] == 0)
+			else if (mat[x][y] == 0)
 			{
 				return 2; //stalemate
 			}
 		}
-		else {
+		else if (mat[x][y] > 0) {
 			return 3;
 		}
+		return 4;
 	}
+	return -1;
 }
+
+
 void board::clear() {
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < column; j++) {
 			matrix1[i][j] = "__";
 			matrix2[i][j] = 0;
+			matrix3[i][j] = 0;
 		}
 	}
 }
@@ -373,69 +415,176 @@ figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 	board b_copy(8,8);
 	possible_attack pos;
 	std::vector<figure*> copy = vect;
-	std::vector<std::pair<int, int>> new_coords;
+	std::vector<std::pair<int, int>> new_coords_b;
+	std::vector<std::pair<int, int>> new_coords_w;
 	figure* wk_copy = vect[1];
-	int first_x, first_y;
-	double d = 0;
+	figure* bk_temp = vect[1];
+	figure* bk_copy = vect[1];
+	figure* eaten_figure = nullptr;
+	figure* eaten_figure_b = nullptr;
+	int first_x_b, first_y_b;
+	int first_x_w, first_y_w;
+	double d = 0,d2 = 0;
+	int place;
+	int place_b;
+	bool fl = false;
+	bool fl2 = false;
+	bool fl3 = false;
 
 	for (int i = 0; i < vect.size(); i++)
 	{
 		if (vect[i]->name == "WK")
 		{
 			wk_copy = vect[i];
-			break;
+		}
+		else if (vect[i]->name == "BK") {
+			bk_copy = vect[i];
 		}
 	}
 
 	for (int i = 0; i < vect.size(); i++)
 	{
-		first_y = copy[i]->y;
-		first_x = copy[i]->x;
-		if (vect[i]->name == "WK")
+		first_y_b = copy[i]->y;
+		first_x_b = copy[i]->x;
+		if (vect[i]->name == "BK")
 		{
-			continue;
-		}
-		else if (vect[i]->name == "BK")
-		{
-			new_coords = pos.possible_k(vect[i]->x, vect[i]->y);
+			new_coords_b = pos.possible_k(vect[i]->x, vect[i]->y);
 		}
 		else if (vect[i]->name == "BQ")
 		{	
-			new_coords = pos.possible_q(vect[i]->x, vect[i]->y, 8, vect[i]->name, b_2.matrix1);
+			new_coords_b = pos.possible_q(vect[i]->x, vect[i]->y, 8, vect[i]->name, b_2.matrix1);
 		}
 		else if (vect[i]->name == "BB")
 		{		
-			new_coords = pos.possible_b(vect[i]->x, vect[i]->y, b_2.matrix1);
+			new_coords_b = pos.possible_b(vect[i]->x, vect[i]->y, b_2.matrix1);
 		}
 		else if (vect[i]->name == "BN")
 		{
-			new_coords = pos.possible_n(vect[i]->x, vect[i]->y);
+			new_coords_b = pos.possible_n(vect[i]->x, vect[i]->y);
 		}
-		for (int j = 0; j < new_coords.size(); j++)
+		else {
+			continue;
+		}
+		for (int j = 0; j < new_coords_b.size(); j++)
 		{
-			
+
 			b_copy.clear();
-			copy[i]->set(new_coords[j].first, new_coords[j].second);
+			copy[i]->set(new_coords_b[j].first, new_coords_b[j].second);
 			d = board::distance(copy[i]->x, copy[i]->y, wk_copy->x, wk_copy->y);
 			if (copy[i]->name == "BK" && d < 2.0)
 			{
 				continue;
 			}
-			if (board::isfree(copy[i]->x, copy[i]->y))
+			if (!board::isfree(copy[i]->x, copy[i]->y))
 			{
-				
-				b_copy.nameplacer(copy);
-				b_copy.Att(copy);
-				//b_copy.print();
-				//b_copy.print_num();
-				if (b_copy.condition(wk_copy) == 1)
+
+				place_b = 0;
+				for (auto it = copy.begin(); it != copy.end(); ++it, ++place_b)
 				{
-					
+					if ((*it)->x == copy[i]->x && (*it)->y == copy[i]->y && (*it)->name != copy[i]->name)
+					{
+						if ((*it)->name != "WK" && (*it)->name != "BK" && (*it)->name != "BQ" && (*it)->name != "BB" && (*it)->name != "BN") {
+							eaten_figure_b = *it;
+							it = copy.erase(it);
+							fl2 = true;
+							break;
+						}
+					}
+				}
+			}
+			b_copy.nameplacer(copy);
+			b_copy.Att(copy);
+			if (b_copy.condition(wk_copy) == 1 && b_copy.condition(bk_copy) != 1 && b_copy.condition(bk_copy) != 3)
+			{
+				if (copy[i]->name == "BK")
+				{
+					bk_temp = bk_copy;
+					bk_copy = copy[i];
+				}
+				for (int k = 0; k < copy.size(); k++)
+				{
+					first_y_w = copy[k]->y;
+					first_x_w = copy[k]->x;
+					if (copy[k]->name == "WK")
+					{
+						new_coords_w = pos.possible_k(copy[k]->x, copy[k]->y);
+					}
+					else if (copy[k]->name == "WQ")
+					{
+						new_coords_w = pos.possible_q(copy[k]->x, copy[k]->y, 8, copy[k]->name, b_copy.matrix1);
+					}
+					else if (copy[k]->name == "WB")
+					{
+						new_coords_w = pos.possible_b(copy[k]->x, copy[k]->y, b_copy.matrix1);
+					}
+					else if (copy[k]->name == "WN")
+					{
+						new_coords_w = pos.possible_n(copy[k]->x, copy[k]->y);
+					}
+					else {
+						continue;
+					}
+					for (int l = 0; l < new_coords_w.size(); l++) {
+						b_copy.clear();
+						copy[k]->set(new_coords_w[l].first, new_coords_w[l].second);
+						d2 = board::distance(copy[k]->x, copy[k]->y, bk_copy->x, bk_copy->y);
+						if (copy[k]->name == "WK" && d2 < 2.0f)
+						{
+							copy[k]->set(first_x_w, first_y_w);
+							continue;
+						}
+						if (!board::isfree(copy[k]->x, copy[k]->y))
+						{
+							place = 0;
+							for (auto it = copy.begin(); it != copy.end(); ++it, ++place)
+							{
+								if ((*it)->x == copy[k]->x && (*it)->y == copy[k]->y && (*it)->name != copy[k]->name)
+								{
+									if ((*it)->name != "WK" && (*it)->name != "BK" && (*it)->name != "WQ" && (*it)->name != "WB" && (*it)->name != "WN") {
+										eaten_figure = *it;
+										it = copy.erase(it);
+										fl3 = true;
+										break;
+									}
+								}
+							}
+						}
+						b_copy.nameplacer(copy);
+						b_copy.Att(copy);
+						b_copy.print();
+						//b_copy.print_num_w();
+						//b_copy.print_num_b();
+						if (b_copy.condition(bk_copy) != 1)
+						{
+							if (b_copy.condition(wk_copy) != 1) {
+								fl = true;
+								bk_copy = bk_temp;
+								copy[k]->set(first_x_w, first_y_w);
+								break;
+							}
+						}
+						if (fl3) {
+							copy.insert(copy.begin() + place - 1, eaten_figure);
+							fl3 = false;
+						}
+						copy[k]->set(first_x_w, first_y_w);
+					}
+					if (fl)
+					{
+						break;
+					}
+				}
+				if (!fl)
+				{
 					return copy[i];
+				}
+				if (fl2) {
+					copy.insert(copy.begin() + place_b - 1, eaten_figure_b);
+					fl2 = false;
 				}
 			}
 		}
-		copy[i]->set(first_x, first_y);
+		copy[i]->set(first_x_b, first_y_b);
 	}
 	return nullptr;
 }

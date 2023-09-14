@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "attack.h"
 #include "figure.h"
 
@@ -13,6 +14,7 @@ protected:
 public:
     std::string** matrix1;
     int** matrix2;
+    int** matrix3;
 private:
     void init();
 
@@ -36,7 +38,8 @@ public:
     ~board() override = default;
 
     void print();
-    void print_num();
+    void print_num_w();
+    void print_num_b();
     void nameplacer(std::vector<figure*> vect);
     void Att(std::vector<figure*> vect);
     int condition(figure* k);
