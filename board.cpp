@@ -578,7 +578,7 @@ figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 						b_copy.clear();
 						b_copy.nameplacer(copy);
 						b_copy.Att(copy);
-						b_copy.print();
+						//b_copy.print();
 						//b_copy.print_num_w();
 						//b_copy.print_num_b();
 						win_b = b_copy.condition(bk_copy);
@@ -600,7 +600,7 @@ figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 							}
 						}
 						if (fl3) {
-							copy.insert(copy.begin() + place - 1, eaten_figure);
+							copy.insert(copy.begin() + place, eaten_figure);
 							fl3 = false;
 						}
 						copy[k]->set(first_x_w, first_y_w);
