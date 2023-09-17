@@ -29,6 +29,7 @@ public:
 class board : public matrix {
     attack att;
 private:
+    bool isfree(int x, int y,board temp);
     bool isfree(int x, int y);
 public:
     board() = default;
