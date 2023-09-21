@@ -1,6 +1,6 @@
 White King F8
-Black King G6
-Black Queen E1
-Black Bishop A2
+Black King F6
+Black Queen E2
+Black Bishop D8
 Black Knight D6
-White Bishop D8
+White Queen E7

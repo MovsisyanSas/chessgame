@@ -75,28 +75,28 @@ std::vector<std::pair<int, int>> possible_attack::possible_q(int x, int y, int r
 	std::vector<std::pair<int, int>> possible_cells;
 
 	for (int i = x + 1; i < row; i++) {
+		possible_cells.push_back(std::make_pair(i, y));
 		if (matrix1[i][y] != "__" && matrix1[i][y] != "WK") {
 			break;
 		}
-		possible_cells.push_back(std::make_pair(i, y));
 	}
 	for (int i = x - 1; i >= 0; i--) {
+		possible_cells.push_back(std::make_pair(i, y));
 		if (matrix1[i][y] != "__" && matrix1[i][y] != "WK") {
 			break;
 		}
-		possible_cells.push_back(std::make_pair(i, y));
 	}
 	for (int i = y + 1; i < row; i++) {
+		possible_cells.push_back(std::make_pair(x, i));
 		if (matrix1[x][i] != "__" && matrix1[x][i] != "WK") {
 			break;
 		}
-		possible_cells.push_back(std::make_pair(x, i));
 	}
 	for (int i = y - 1; i >= 0; i--) {
+		possible_cells.push_back(std::make_pair(x, i));
 		if (matrix1[x][i] != "__" && matrix1[x][i] != "WK") {
 			break;
 		}
-		possible_cells.push_back(std::make_pair(x, i));
 	}
 
 	int i;

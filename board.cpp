@@ -509,6 +509,7 @@ figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 			
 			b_copy.nameplacer(copy);
 			b_copy.Att(copy);
+			//b_copy.print();
 			if (b_copy.condition(wk_copy) == 1 && b_copy.condition(bk_copy) != 1 && b_copy.condition(bk_copy) != 3)
 			{
 				if (copy[i]->name == "BK")
@@ -588,6 +589,8 @@ figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 							if (win_w != 1 && win_w != 3) {
 								fl = true;
 								bk_copy = bk_temp;
+								wk_copy = wk_temp;
+								
 								if (fl3) {
 									eating_figure->set(first_x_w, first_y_w);
 									copy.insert(copy.begin() + place, eaten_figure);
@@ -598,6 +601,23 @@ figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 								}								
 								break;
 							}
+						}
+						else if (win_b == 1 || win_b == 3) {
+							if (win_w != 1 && win_w != 3) {
+								fl = true;
+								bk_copy = bk_temp;
+								wk_copy = wk_temp;
+								if (fl3) {
+									eating_figure->set(first_x_w, first_y_w);
+									copy.insert(copy.begin() + place, eaten_figure);
+									fl3 = false;
+								}
+								else {
+									copy[k]->set(first_x_w, first_y_w);
+								}
+								break;
+							}
+							
 						}
 						if (fl3) {
 							copy.insert(copy.begin() + place, eaten_figure);
@@ -618,7 +638,7 @@ figure* board::find_m1(std::vector<figure*> vect,board b_2) {
 					fl = false;
 				}
 				if (fl2) {
-					copy.insert(copy.begin() + place_b - 1, eaten_figure_b);
+					copy.insert(copy.begin() + place_b, eaten_figure_b);
 					fl2 = false;
 				}
 			}
